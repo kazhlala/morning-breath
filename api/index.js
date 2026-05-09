@@ -103,6 +103,15 @@ export default async function handler(req) {
   let slotAcquired = false;
   const url = new URL(req.url);
 
+  // ---- 0. Landing Page for root path ("/") to prevent 404 ----
+  if (url.pathname === "/") {
+    const landingHtml = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>morning-breath</title><style>body { background: #0a0a0a; color: #ccc; font-family: monospace; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; } .container { text-align: center; background: #111; padding: 3rem; border-radius: 12px; border: 1px solid #2a2a2a; } h1 { color: #2ecc71; font-size: 2rem; } p { color: #888; }</style></head><body><div class="container"><h1>morning-breath</h1><p>Status: Operational</p></div></body></html>`;
+    return new Response(landingHtml, {
+      status: 200,
+      headers: { "content-type": "text/html; charset=utf-8", "server": randomItem(SERVER_NAMES) },
+    });
+  }
+
   // ---- 1. Fake Health Check Endpoint ----
   if (url.pathname === FAKE_HEALTH_PATH) {
     const respHeaders = new Headers();
