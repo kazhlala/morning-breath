@@ -37,7 +37,7 @@ const FORWARD_HEADER_PREFIXES = [
   "dnt", "authorization",
 ];
 
-// ---------- Decoy HTML (Landing Page) ----------
+// ---------- Decoy HTML (Landing Page) - THE FIX IS HERE! ----------
 const LANDING_HTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
